@@ -1,6 +1,6 @@
 import { LegacyRef, useContext, useEffect, useRef, useState } from "react"
 import { PaginaAsideContext } from "../../../contexts/pokemon/paginaAside"
-import PkmnNavigate from "../../pkmnNavigate"
+import PkmnNavigate from "../../layout/pkmnNavigate"
 
 export default function NavigateLists(){
     const { paginaAside, setPaginaAside} = useContext(PaginaAsideContext)

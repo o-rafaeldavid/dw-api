@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useREQuery } from "../global/graphql/useREquery";
 import NotFound from "./404";
-import PokemonPage from "../components/pokemon/pokemonpage";
+import PokemonPage from "../components/pokemon/pokemonpage/pokemonpage";
 
 import '../scss/pokemon.scss'
 import PaginaAsideProvider from "../contexts/pokemon/paginaAside";

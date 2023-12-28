@@ -1,9 +1,9 @@
 import { useContext, useEffect, useRef, useState } from "react"
-import { ThemeTypeContext } from "../../contexts/themeType"
-import NavigateLists from "./pokemonpage/navigateLists"
-import { PaginaAsideContext } from "../../contexts/pokemon/paginaAside"
-import PokemonPageMain from "../../contexts/pokemon/mainContainer"
-import { capitalizarPosTracos } from "../../global/ts/functions"
+import { ThemeTypeContext } from "../../../contexts/themeType"
+import NavigateLists from "./navigateLists"
+import { PaginaAsideContext } from "../../../contexts/pokemon/paginaAside"
+import PokemonPageMain from "./mainContainer"
+import { capitalizarPosTracos } from "../../../global/ts/functions"
 
 /* 
 pokemon_v2_pokemonspecies(where: {name: {_eq: "charizard"}}) {

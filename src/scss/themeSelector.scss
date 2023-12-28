@@ -1,0 +1,80 @@
+@import './_mixins.scss';
+
+$headerHeight: 64px;
+
+@mixin inTypeIconDescription(){
+    @include dim(100%, $headerHeight * 0.5);
+    padding: $headerHeight * 0.125 * 0.5;
+    > span{ margin: auto $headerHeight * 0.125; }
+}
+
+div#themeSelector {
+    position: relative;
+    margin: $headerHeight * 0.25 0 0 10%;
+    
+
+    > div#themeSelected{
+        z-index: 1;
+        position: relative;
+        @include whiteRoundCorner($headerHeight * 0.25);
+        @include dim(100%, fit-content);
+
+        > div#themeBar.typeIconDescription{
+            @include inTypeIconDescription();
+            padding: $headerHeight * 0.125 * 0.5;
+            margin: 0 $headerHeight * 0.125 * 0.5 0 $headerHeight * 0.125 * 0.5;
+        }
+
+        &:hover{
+            cursor: pointer;
+
+            img{
+                filter: brightness(0.75);
+            }
+        }
+
+        &.clicked{
+            filter: brightness(0.75);
+        }
+    }
+
+    > ul#themeSpinner{
+        @include dim(fit-content, auto);
+        @include whiteRoundCorner($headerHeight * 0.125);
+        max-height: 0;
+        padding: 0 $headerHeight * 0.125 * 0.5 0 $headerHeight * 0.125 * 0.5;
+
+        margin-top: $headerHeight * 0.125;
+
+        transition: max-height 200ms;
+
+        &.show{
+            max-height: 100dvh;
+            padding: $headerHeight * 0.125 * 0.5;
+        }
+
+        overflow: hidden;
+
+        > li{
+            @include inTypeIconDescription();
+            background-color: unset;
+            border-radius: $headerHeight * 0.25;
+
+            &:not(:first-child){
+                margin-top: $headerHeight * 0.125 * 0.5;
+            }
+
+            &:hover:not(.selecionado){
+                cursor: pointer;
+                filter: brightness(0.75);
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+
+            &.selecionado{
+                cursor: default;
+                filter: brightness(0.75);
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+}

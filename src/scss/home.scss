@@ -112,9 +112,9 @@ div#interface{
                 &:hover{
                     scale: 1.07;
                     cursor: pointer;
-                    > div.backgroundBranco{ opacity: 0; }
+                    div.backgroundBranco{ opacity: 0; }
 
-                    > svg{
+                    svg{
                         animation: hoverScaleSVG 500ms ease-in-out forwards;
                         > path{ transition: fill 200ms; }
                     }
@@ -125,9 +125,11 @@ div#interface{
         }
     }
 
-    > ul{
+    > ul#pkmnFilters{
         min-width: 200px;
         @include whiteRoundCorner(20px);
+        padding: 18px;
+        box-sizing: border-box;
         display: block;
     }
 }

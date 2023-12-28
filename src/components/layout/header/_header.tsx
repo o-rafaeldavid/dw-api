@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { iconsColorByName, iconsGradientByName, iconsGradientColorsByName } from '../../../global/ts/icons'
 import { ThemeTypeContext } from '../../../contexts/themeType'
 
-import ThemeSelector from './themeSelector'
+import ThemeSelector from '../themeSelector'
 
 import '../../../scss/header.scss'
 

@@ -1,9 +1,9 @@
 import { useContext } from "react"
-import { ThemeTypeContext } from "../contexts/themeType"
-import { iconsColorByName } from "../global/ts/icons"
-import { PkmnNavigateProps } from "../global/ts/_interfaces"
+import { ThemeTypeContext } from "../../contexts/themeType"
+import { iconsColorByName } from "../../global/ts/icons"
+import { PkmnNavigateProps } from "../../global/ts/_interfaces"
 
-import '../scss/pkmnNavigate.scss'
+import '../../scss/pkmnNavigate.scss'
 
 export default function PkmnNavigate({anterior, proximo, state, setState, type, textType} : PkmnNavigateProps) {
     const { themeType } = useContext(ThemeTypeContext)

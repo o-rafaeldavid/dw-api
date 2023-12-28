@@ -2,7 +2,8 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { useREQuery } from '../global/graphql/useREquery';
 
 import PkmnGrid from '../components/home/pkmnGrid/_pkmnGrid';
-import PkmnNavigate from '../components/pkmnNavigate';
+import PkmnNavigate from '../components/layout/pkmnNavigate';
+import PkmnFilters from '../components/home/pkmnFilters';
 import { PaginaGridContext } from '../contexts/home/paginaGrid';
 import { ThemeTypeContext } from '../contexts/themeType';
 
@@ -105,11 +106,14 @@ export default function Home() {
     }, [queryPkmn.res]
   )
 
-  return (
-    
+
+
+
+
+  return (  
     <>
       <div id="interface">
-        <ul>aa</ul>
+        <PkmnFilters/>
         <div id="PkmnList">
           {
             (queryPkmn.isLoading) ? <p>loading</p>

@@ -1,8 +1,10 @@
-import { MouseEventHandler, useContext, useEffect, useState } from "react"
-import { ThemeTypeContext } from "../../../contexts/themeType"
-import { TypeIcon } from "../../icons/typeIcon"
-import { ThemeSpinnerProps } from "../../../global/ts/_interfaces"
-import { useREQuery } from "../../../global/graphql/useREquery"
+import {useContext, useEffect, useState } from "react"
+import { ThemeTypeContext } from "../../contexts/themeType"
+import { TypeIcon } from "../icons/typeIcon"
+import { ThemeSpinnerProps } from "../../global/ts/_interfaces"
+import { useREQuery } from "../../global/graphql/useREquery"
+
+import '../../scss/themeSelector.scss'
 
 ////////////////////
 ////////////////////
