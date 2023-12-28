@@ -1,0 +1,34 @@
+@mixin position($vertical: 0, $horizontal: 0, $isTop: true, $isLeft: true){
+    @if($isTop){ top: $vertical; }
+        @else{ bottom: $vertical; }
+    
+    @if($isLeft){ left: $horizontal; }
+        @else{ right: $horizontal; }
+}
+
+@mixin translate($t: 0, $l: 0){
+    translate: $t $l;
+}
+
+@mixin centrado_absolute(){
+    position: absolute;
+    @include position(50%, 50%);
+    @include translate(-50%, -50%)
+}
+
+@mixin dim($w: auto, $h: auto){
+    width: $w;
+    height: $h;
+}
+
+/* elementos de background branco e bordas redondas */
+@mixin whiteRoundCorner($corner: 50%){
+    background-color: white;
+    border-radius: $corner;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 0 20px;
+}
+
+
+@mixin hoverTranslateImageAnimation(){
+    animation: hoverTranslateImage 250ms ease-in-out forwards;
+}

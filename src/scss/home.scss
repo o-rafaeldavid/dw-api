@@ -1,0 +1,133 @@
+@import './_mixins.scss';
+
+
+div#interface{
+    @include centrado_absolute();
+    @include dim(80dvw, 75dvh);
+
+    display: flex;
+    flex-direction: row;
+
+    gap: 60px;
+
+    > div#PkmnList{
+        $sizeNavigateItems: 32px;
+        @include dim(auto, 100%);
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 60px;
+    
+        > ol#PkmnGrid{
+            @include dim(100%, calc(75dvh - 60px - $sizeNavigateItems));
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 30px;
+
+            &:has( > li:hover) > li:not(:hover){
+                filter: brightness(0.7);
+            }
+
+            > li{
+                position: relative;
+                @include dim(100%, 100%);
+                border-radius: 20px;
+                overflow: hidden;
+                transition: background 200ms;
+                box-shadow: rgba(0, 0, 0, 0.2) 0 0 30px;
+
+                transition: scale 300ms, filter 600ms;
+
+                > a{
+                    position: relative;
+                    all: unset;
+
+                    > div.backgroundBranco{
+                        position: absolute;
+                        @include dim(100%, 100%);
+                        @include position($vertical: 0, $horizontal: 0);
+                        background-color: white;
+                        opacity: 1;
+                        transition: opacity 200ms;
+                    }
+
+                    > div.pkmnCardData{
+                        z-index: 1;
+                        position: relative;
+                        display: flex;
+                        flex-direction: column;
+                        @include dim(100%, 100%);
+                        box-sizing: border-box;
+                        padding: 12px;
+
+                        > div.pkmnCardImage{
+                            @include dim(100%, auto);
+                            aspect-ratio: 1 / 1;
+                            background-position: 50% 50%;
+                            background-size: cover;
+                        }
+
+                        > div.pkmnCardInfo{
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+
+                            > h3, h4{
+                                text-shadow: rgba(0, 0, 0, 0.3) 0 0 26px;
+                            }
+
+                            > h3{
+                                text-transform: capitalize;
+                                margin: 6px 0;
+                            }
+
+                            > h4{
+
+                            }
+                        }
+                    }
+
+                    > svg{
+                        position: absolute;
+                        bottom: 0;
+                        transform-origin: center bottom;
+                        animation: outScaleSVG 200ms ease-in-out forwards;
+                    }
+
+                    @keyframes outScaleSVG {
+                        0%{ scale: 2; }
+                        100%{ scale: 1; }
+                    }
+
+                    @keyframes hoverScaleSVG {
+                        0%{ scale: 1; }
+                        50%{ scale: 1.5; }
+                        100%{ scale: 1.2; }
+                    }
+
+                }
+
+
+                &:hover{
+                    scale: 1.07;
+                    cursor: pointer;
+                    > div.backgroundBranco{ opacity: 0; }
+
+                    > svg{
+                        animation: hoverScaleSVG 500ms ease-in-out forwards;
+                        > path{ transition: fill 200ms; }
+                    }
+
+                    div.pkmnCardImage{ @include hoverTranslateImageAnimation(); }
+                }
+            }
+        }
+    }
+
+    > ul{
+        min-width: 200px;
+        @include whiteRoundCorner(20px);
+        display: block;
+    }
+}

@@ -1,0 +1,70 @@
+@import './_mixins.scss';
+
+
+
+
+$sizeNavigateItems: 32px;
+
+div.pkmnNavigate{
+    display: flex;
+    gap: $sizeNavigateItems * 0.5;
+    margin: 0 auto;
+
+    &.fundo{
+        @include whiteRoundCorner(24px);
+        box-shadow: none;
+
+        *{
+            text-shadow: none;
+            box-shadow: none;
+        }
+
+        > button{
+            &:hover:not(.defining){
+                filter: brightness(1);
+                
+                > svg > path{
+                    fill: gray
+                }
+            }
+        }
+    }
+
+    > button{
+        @include whiteRoundCorner();
+        @include dim($sizeNavigateItems, $sizeNavigateItems);
+        position: relative;
+
+        border: none;
+
+        &:first-child > svg{ rotate: 180deg; }
+        > svg{
+            @include centrado_absolute();
+        }
+
+        &:hover:not(.defining){
+            filter: brightness(0.75);
+            cursor: pointer;
+        }
+
+        &.sumiu{
+            visibility: hidden;
+        }
+    }
+
+    > div{
+        
+        @include dim(3 * $sizeNavigateItems, $sizeNavigateItems);
+        text-align: center;
+        flex-grow: 1;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-weight: 600;
+        font-size: 1.6em;
+        color: white;
+        text-shadow: rgba(0, 0, 0, 0.7) 0 0 24px;
+    }
+}

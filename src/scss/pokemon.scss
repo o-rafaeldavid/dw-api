@@ -1,0 +1,270 @@
+@use 'sass:list';
+
+@import './_mixins.scss';
+
+#pokemonPage{
+    flex-grow: 1;
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+
+    margin-bottom: 10dvh;
+
+    
+    > main{
+        position: relative;
+        flex-grow: 1;
+        margin-left: 15dvw;
+
+        $marginTopH1: 46px;
+
+        > div.switcher{
+            position: absolute;
+            text-shadow: rgba(0, 0, 0, 0.3) 0 0 20px;
+            @include position(
+                $vertical: calc($marginTopH1 + 12em),
+                $horizontal: 0,
+                $isLeft: false
+            );
+        }
+
+
+
+
+        > span#aboutAbility{
+            position: absolute;
+            @include whiteRoundCorner(6px);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            display: none;
+
+            padding: 6px;
+
+            z-index: 1;
+
+            font-size: 0.78em;
+            font-weight: 500;
+
+            max-width: 300px;
+        }
+
+
+
+
+        > h1{
+            margin-top: $marginTopH1;
+            max-width: 50dvw;
+        }
+
+
+
+
+        > img#imagemPrincipal{
+            position: absolute;
+            @include dim(auto, 78dvh);
+            aspect-ratio: 1 / 1;
+
+            @include position(
+                $vertical: 0,
+                $horizontal: 60%,
+                $isTop: false
+            );
+            translate: -50% 0;
+        }
+
+
+
+
+        > ul#types{
+            position: absolute;
+            @include position(
+                $vertical: 10%,
+                $horizontal: 0,
+                $isTop: false,
+                $isLeft: false
+            );
+
+            > li{
+                @include whiteRoundCorner(12px);
+            }
+        }
+
+
+
+
+        > div#info{
+            padding: 18px;
+            box-sizing: border-box;
+            @include whiteRoundCorner(12px);
+
+            position: absolute;
+            @include position(
+                $vertical: 10%,
+                $horizontal: 0,
+                $isTop: false
+            );
+
+            > table{
+                border-spacing: 6px;
+
+                > tbody{
+                    > tr{
+                        > td.statName{
+                            text-align: right;
+                            padding-right: 12px;
+                        }
+
+                        > td.barra > div{
+                            display: inline-block;
+                            height: 0.5em;
+                            background-color: rgba(0, 0, 0, 0.1);
+                            > div{
+                                height: 100%;
+                            }
+                        }
+
+                        $coresStats: #53CD5B, #F6DE52, #ED7F0F, #56B0F1, #AD62F6, #F06ACE;
+                        @for $i from 1 to 7{
+                            &:nth-child(#{$i}){
+                                > td.barra > div > div{
+                                    background-color: list.nth($coresStats, $i);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    > aside{
+        position: relative;
+        overflow: hidden;
+        width: 20dvw;
+        display: flex;
+        flex-direction: column-reverse;
+
+        > div#navigateLists{
+            $sizeNavigateItems: 64px;
+            @include dim(auto, $sizeNavigateItems);
+
+            display: flex;
+            flex-direction: column;
+
+            > div{
+                display: flex;
+                justify-content: center;
+                @include dim(auto, $sizeNavigateItems * 0.5);
+
+                &#bolinhas{
+                    > div{
+                        @include dim(auto, $sizeNavigateItems * 0.25);
+                        aspect-ratio: 1 / 1;
+                        margin: $sizeNavigateItems * 0.125;
+
+                        @include whiteRoundCorner();
+                        box-shadow: none;
+
+                        cursor: pointer;
+
+                        &:not(.selected){
+                            scale: 0.7;
+                            opacity: 0.8;
+                        }
+                    }
+                }
+
+                &.pkmnNavigate{
+
+                    > div{
+                        > span{
+                            font-size: 20px;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+
+        > div#lists{
+            position: relative;
+            flex-grow: 1;
+            overflow: hidden;
+        
+
+            > ol{
+                @include dim(100%, 100%);
+                position: absolute;
+                @include position(
+                    $vertical: 0,
+                    $horizontal: 100%,
+                );
+
+                &:has(~ ol.active){
+                    left: -100%
+                }
+
+                &.active{
+                    left: 0;
+                }
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                row-gap: 24px;
+
+                transition: left 200ms ease-in-out;
+
+                > li{
+                    cursor: pointer;
+                    position: relative;
+                    @include dim(100px, auto);
+                    aspect-ratio: 1 / 1;
+
+                    @include whiteRoundCorner(12px);
+                    padding: 12px;
+
+                    transform-origin: right center;
+
+                    transition: scale 200ms, margin 200ms, opacity 200ms, filter 200ms;
+
+
+
+                    &:has(+ li.active){
+                        margin-bottom: 10px;
+                    } 
+                    &.active + li{
+                        margin-top: 10px;
+                    }
+
+                    &.active{
+                        outline: yellow 3px solid;
+                        box-shadow: yellow 0 0 20px;
+                    }
+
+                    &:not(.active){
+                        scale: 0.8;
+                        opacity: 0.8;
+                        filter: brightness(0.8);
+
+                        &:hover{
+                            scale: 0.9;
+                            opacity: 1;
+                            filter: brightness(1);
+
+                            img{
+                                @include hoverTranslateImageAnimation();
+                            }
+                        }
+                    }
+
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

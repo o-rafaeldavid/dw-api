@@ -1,0 +1,198 @@
+@import './_mixins.scss';
+
+
+
+
+
+
+@keyframes hoverTranslateImage {
+    0%{ translate: 0 0; }
+    50%{ translate: 0 -20px; }
+    100%{ translate: 0 0;}
+}
+
+
+
+
+
+
+html, body{
+    padding: 0;
+    margin: 0;
+    background: black;
+
+    font-family: 'Ubuntu', sans-serif;
+
+    overflow: hidden;
+    cursor: default;
+    user-select: none;
+}
+
+
+ul, ol{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+@for $i from 1 through 7{
+    h#{$i}{
+        margin: 0;
+    }
+}
+
+h1{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    color: white;
+    font-size: 12em;
+    line-height: 1;
+}
+
+h3{
+    margin-bottom: 0.5em;
+}
+
+p{
+    margin: 0 0 0.3em 0;
+}
+
+div.switcher{
+    > *{
+        display: inline-block;
+    }
+
+    > h3{ color: white; }
+
+    > div.switch{
+        display: inline-block;
+        position: relative;
+        margin-left: 12px;
+        
+        &:hover{
+            cursor: pointer;
+
+            &:not(.clicked) > div.barra{
+                opacity: 0.8;
+            }
+
+            &.clicked > div.barra{
+                background-color: rgb(255, 30, 30);
+            }
+        }
+
+        &.clicked{
+            > div.barra{
+                background-color: yellow;
+                box-shadow: rgba(0, 0, 0, 0.3) 0 0 20px;
+                opacity: 1;
+                transition: background 100ms;
+            }
+            > div.bola{
+                left: calc(100% - 20px);
+            }
+        }
+
+        > div.barra{
+            @include dim(32px, 10px);
+            background-color: white;
+            opacity: 0.6;
+            transition: opacity 100ms, background 300ms;
+
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+
+        > div.bola{
+            @include dim(20px, auto);
+            aspect-ratio: 1 / 1;
+            @include whiteRoundCorner();
+            position: absolute;
+            @include position(
+                $vertical: 50%,
+                $horizontal: 0
+            );
+            translate: 0 -50%;
+            z-index: 1;
+
+            transition: left 300ms;
+        }
+    }
+}
+
+.about{
+    border-radius: 50%;
+    height: fit-content;
+    width: fit-content;
+    background-color: white;
+    
+    color: rgb(120, 120, 120);
+    outline: rgb(220, 220, 220) 2px solid;
+
+    padding: 0 0.4em;
+
+    &:hover{
+        cursor: pointer;
+        background-color: rgb(220, 220, 220);
+        color: white;
+    }
+}
+
+#typeIconGrid{
+    position: absolute;
+    @include dim(100dvw, 100dvh);
+    display: grid;
+    grid-template-columns: repeat(40, 2.5dvw);
+    grid-template-rows: repeat(20, 5dvh);
+
+    filter: saturate(1.3);
+
+    > div{
+        position: relative;
+        @include dim(3dvw, 3dvh);
+
+        transition: opacity 300ms;
+
+        > img{
+            @include dim(100%, 100%);
+        }
+    }
+}
+
+
+#root{
+    position: relative;
+    min-width: 100dvw;
+    min-height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+
+    > #container{
+        position: relative;
+        display: flex;
+        flex-grow: 1;
+    }
+}
+
+/* estilo referente aos icons dos tipos de pokemon */
+div.typeIconFundo{
+    position: relative;
+    @include dim(auto, 100%);
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+
+    > img.typeIconImage{
+        @include centrado_absolute();
+        @include dim(70%, 80%);
+    }
+}
+
+
+.typeIconDescription{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    > span{ text-transform: capitalize; }
+}
