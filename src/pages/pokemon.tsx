@@ -89,10 +89,7 @@ export default function Pokemon(){
     console.log(ret)
     return(
         <>
-            {
-                (queryPkmnURL.isLoading) ? <p>loading</p>
-                : <></>
-            }
+            teste
         </>
     )
 }
