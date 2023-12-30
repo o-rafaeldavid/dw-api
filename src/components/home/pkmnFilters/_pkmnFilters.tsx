@@ -38,7 +38,6 @@ export default function PkmnFilters({stateSetter} : {stateSetter : React.Dispatc
                 ) as HTMLInputElement[]
                 
                 if(typeSelecionado !== null){
-                    if(windowWidth < 1200) form.removeAttribute('style')
                     stateSetter(
                         {
                             type: typeSelecionado.value.toLowerCase() as keyof TypesProps,
