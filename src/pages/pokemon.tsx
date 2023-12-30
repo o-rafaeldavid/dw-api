@@ -73,17 +73,20 @@ export default function Pokemon(){
         `}
     )
 
-
-
-    if(queryPkmnURL.isLoading) return <p>loading</p>
-    else{
-        const res = queryPkmnURL.res
-        const especies = res.pokemon_v2_pokemonspecies
-        if(especies.length === 0) return <NotFound/>
-        else return(
-            <PaginaAsideProvider>
-                <PokemonPage especies={especies}/>
-            </PaginaAsideProvider>
-        )
+    const ret = () => {
+        if(queryPkmnURL.isLoading) return <p>loading</p>
+        else{
+            const res = queryPkmnURL.res
+            const especies = res.pokemon_v2_pokemonspecies
+            if(especies.length === 0) return <NotFound/>
+            else return(
+                <PaginaAsideProvider>
+                    <PokemonPage especies={especies}/>
+                </PaginaAsideProvider>
+            )
+        }
     }
+    return(
+        { ret }
+    )
 }
