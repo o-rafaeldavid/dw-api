@@ -50,7 +50,9 @@
             margin-right: 32px;
 
                     @media (max-width: 1000px) {
-                        top: 6em;
+                        position: relative;
+                        float: right;
+                        top: unset; left: unset; 
                     }
 
             > svg{
@@ -83,12 +85,7 @@
             );
 
             @media (max-width: 1000px) {
-                /* right: unset;
-                @include position(
-                    $vertical: calc($marginTopH1 + 10.5em),
-                    $horizontal: 0,
-                    $isLeft: true
-                ); */
+                margin-top: 10px;
                 top: unset; left: unset; right: unset; bottom: unset;
                 position: relative;
             }
@@ -166,7 +163,7 @@
                         translate: 0% -20dvh;
                     }
                     @media (max-width: 680px) {
-                        translate: 15% -20dvh;
+                        translate: 20% -20dvh;
                     }
         }
 
