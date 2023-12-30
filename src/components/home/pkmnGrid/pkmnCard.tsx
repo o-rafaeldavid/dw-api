@@ -68,6 +68,7 @@ export default function PkmnCard({pkmn} : any ){
     ////////////////////////
 
     const svgAnimate = (timestamp : number) => {
+        console.log(timestamp)
         setFrameCounter((lastframe) => lastframe + 1)
         animationRef.current = requestAnimationFrame(svgAnimate)
     }

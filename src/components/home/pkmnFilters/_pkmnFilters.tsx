@@ -1,5 +1,4 @@
 import { LegacyRef, useContext, useRef } from "react";
-import { ThemeTypeContext } from "../../../contexts/themeType";
 import OrderBy from "./orderBy";
 import ThemeSelector from "./themeSelector";
 import WeightSlider from "./weightSlider";
@@ -10,8 +9,6 @@ import GenSelectors from "./generationSelectors";
 
 
 export default function PkmnFilters({stateSetter} : {stateSetter : React.Dispatch<filterFormProps>}){
-
-    const {themeType} = useContext(ThemeTypeContext)
 
     let submitRef = useRef<HTMLButtonElement>()
 
@@ -38,7 +35,7 @@ export default function PkmnFilters({stateSetter} : {stateSetter : React.Dispatc
                     stateSetter(
                         {
                             type: typeSelecionado.value.toLowerCase() as keyof TypesProps,
-                            name: form.pesquisaNome.value,
+                            name: form.pesquisaNome.value.toLowerCase(),
                             weight:{
                                 min: form.input_left.value,
                                 max: form.input_right.value

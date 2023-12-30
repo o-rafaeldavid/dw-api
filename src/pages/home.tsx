@@ -13,7 +13,7 @@ import { TypesProps } from '../global/ts/_interfaces';
 
 import '../scss/home.scss'
 
-const betweenCommas = (str) => `"${str}"`
+const betweenCommas = (str : string) => `"${str}"`
 
 let tipos = allTypes
 tipos.shift()
@@ -42,6 +42,7 @@ export default function Home() {
 
   const [formState, setFormState] = useState<filterFormProps>({
     type: themeType,
+    name: '',
     weight:{
         min: 0,
         max: 100
@@ -156,7 +157,7 @@ export default function Home() {
     }, [pagina]
   )
 
-  const useCheckPkmnList = (query : any, booleanStateSetter : React.Dispatch<React.SetStateAction<boolean | undefined>>, any : any) => {
+  const useCheckPkmnList = (query : any, booleanStateSetter : React.Dispatch<React.SetStateAction<boolean | undefined>>) => {
     useEffect(
       () => {
         if(!query.isLoading){
@@ -168,8 +169,8 @@ export default function Home() {
     )
   }
 
-  useCheckPkmnList(queryPreviousPkmn, setExistPkmnAnteriores, 'anteriores')
-  useCheckPkmnList(queryNextPkmn, setExistPkmnProximos, 'proximos')
+  useCheckPkmnList(queryPreviousPkmn, setExistPkmnAnteriores)
+  useCheckPkmnList(queryNextPkmn, setExistPkmnProximos)
 
   ///////////////
 

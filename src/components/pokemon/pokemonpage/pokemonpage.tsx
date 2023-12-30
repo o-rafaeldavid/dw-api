@@ -145,7 +145,7 @@ export default function PokemonPage({especies} : {especies : any}){
                     <ol className="active">
                         {
                             linhaEvolutiva.map(
-                                (pkmn : any, index : number) => {
+                                (pkmn : any) => {
                                     const imagem = (
                                         <img
                                             alt=""

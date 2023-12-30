@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { gql, useQuery } from "urql"
 import { reQueryProps } from "../ts/_interfaces";
 

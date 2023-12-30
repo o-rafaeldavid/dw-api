@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { CSSProperties, useContext, useState } from "react"
 import { Action } from "../../../global/ts/_interfaces"
 import { iconsGradientByName } from "../../../global/ts/icons"
 import { ThemeTypeContext } from "../../../contexts/themeType"

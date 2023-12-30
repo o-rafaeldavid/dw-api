@@ -1,4 +1,4 @@
-import {useContext, useEffect, useRef, useState } from "react"
+import {useContext, useEffect, useState } from "react"
 import { ThemeTypeContext } from "../../../contexts/themeType"
 import { TypeIcon } from "../../icons/typeIcon"
 import { Action, ThemeSpinnerProps } from "../../../global/ts/_interfaces"

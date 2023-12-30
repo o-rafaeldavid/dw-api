@@ -18,8 +18,8 @@ export default function WindowDimensionProvider({children} : Props){
     const [windowWidth, setWindowWidth] = useState(window.innerWidth)
     const [windowHeight, setWindowHeight] = useState(window.innerHeight)
 
-    const setarWidth = (e) => setWindowWidth(window.innerWidth)
-    const setarHeight = (e) => setWindowHeight(window.innerHeight)
+    const setarWidth = () => setWindowWidth(window.innerWidth)
+    const setarHeight = () => setWindowHeight(window.innerHeight)
 
     useEventListener(window, "resize", setarWidth);
     useEventListener(window, "resize", setarHeight);
