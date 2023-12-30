@@ -87,6 +87,11 @@ export default function Pokemon(){
         }
     }
     return(
-        <>{ ret }</>
+        <>
+            {
+                (queryPkmnURL.isLoading) ? <p>loading</p>
+                : <></>
+            }
+        </>
     )
 }
