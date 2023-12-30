@@ -27,7 +27,7 @@ header{
 
         
         
-        > a{
+        > a#pokebola{
             @include dim(auto, 100%);
             aspect-ratio: 1 / 1;
             position: absolute;
@@ -36,14 +36,30 @@ header{
                 $horizontal: 50%
             );
             translate: -50% -50%;
-            > svg#pokebola{
+            > svg{
                 @include dim(auto, 100%);
+                position: absolute;
+                @include position(
+                    $vertical: 0,
+                    $horizontal: 0
+                );
                 aspect-ratio: 1 / 1;  
                 padding: 6px;
                 height: 100%;
                 box-sizing: border-box;
                 filter: brightness(0.87) saturate(1.2) contrast(1.4);
+
+                transition: scale 300ms;
                 
+            }
+
+            &:hover > svg{
+                scale: 0.9;
+            }
+
+            &:hover > svg:first-child{
+                filter: brightness(1) saturate(3) contrast(2) blur(2px) !important;
+                opacity: 0.8;
             }
         }
         

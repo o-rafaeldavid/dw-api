@@ -26,6 +26,11 @@ html, body{
     overflow: hidden;
     cursor: default;
     user-select: none;
+
+            @media (max-height: 830px){ font-size: 0.97em; }
+            @media (max-height: 770px){ font-size: 0.94em; }
+            @media (max-height: 720px){ font-size: 0.9em; }
+            @media (max-width: 1000px){ font-size: 0.87em;}
 }
 
 

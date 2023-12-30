@@ -4,11 +4,42 @@
 div#interface{
     @include centrado_absolute();
     @include dim(80dvw, 75dvh);
+            @media (max-height: 1000px) or (max-width: 1350px){ @include dim(80dvw, 75dvh); };
+            @media (max-width: 900px){ @include dim(90dvw, 75dvh); };
 
     display: flex;
     flex-direction: row;
-
     gap: 60px;
+        @media (max-height: 700px) or (max-width: 1350px){ gap: 26px; };
+
+
+
+
+
+    > div.showMobile{
+        @include dim(36px, 36px);
+        &#filterIcon{
+            position: relative;
+            &:hover{
+                cursor: pointer;
+                > svg path {fill: rgb(120, 120, 120) !important;}
+            }
+            > svg{
+                width: 100%;
+                height: auto;
+                padding: 6px;
+                box-sizing: border-box;
+                position: absolute;
+
+                &:first-child{
+                    filter: brightness(0.4) saturate(10) contrast(10) blur(8px);
+                    opacity: 1;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
+    }
 
     > div#PkmnList{
         $sizeNavigateItems: 32px;
@@ -17,6 +48,9 @@ div#interface{
         display: flex;
         flex-direction: column;
         gap: 60px;
+
+        @media (max-height: 1000px) or (max-width: 1350px){ gap: 30px };
+
     
         > ol#PkmnGrid{
             @include dim(100%, calc(75dvh - 60px - $sizeNavigateItems));
@@ -24,6 +58,20 @@ div#interface{
             grid-template-columns: repeat(6, 1fr);
             grid-template-rows: repeat(2, 1fr);
             gap: 30px;
+
+                    @media (max-height: 720px) or (max-width: 1600px){
+                        grid-template-columns: repeat(4, 1fr);
+                        grid-template-rows: repeat(2, 1fr);
+                    }
+
+                    @media (max-width: 1000px){
+                        grid-template-columns: repeat(3, 1fr);
+                        grid-template-rows: repeat(3, 1fr);
+
+                        gap: 12px;
+                    }
+
+
 
             &:has( > li:hover) > li:not(:hover){
                 filter: brightness(0.7);
@@ -38,6 +86,8 @@ div#interface{
                 box-shadow: rgba(0, 0, 0, 0.2) 0 0 30px;
 
                 transition: scale 300ms, filter 600ms;
+
+                
 
                 > a{
                     position: relative;
@@ -61,11 +111,24 @@ div#interface{
                         box-sizing: border-box;
                         padding: 12px;
 
+                                @media (max-height: 720px) or (
+                                    (max-width: 1600px) and (max-height: 790px)
+                                ){ padding: 0px 4px 12px 4px; }
+                                @media (max-width: 1000px){ padding: 0px 4px 8px 4px; };
+                                @media (max-width: 850px){ padding: 8px 2px; };
+
                         > div.pkmnCardImage{
                             @include dim(100%, auto);
+                            margin: 0 auto;
                             aspect-ratio: 1 / 1;
                             background-position: 50% 50%;
                             background-size: cover;
+
+                                    @media (max-height: 770px) or (max-width: 1600px){ @include dim(85%, auto); }
+                                    @media (max-width: 1600px) and (max-height: 790px){ @include dim(70%, auto); }
+                                    @media (max-height: 720px){ @include dim(55%, auto); }
+                                    @media (max-height: 700px) or (max-width: 1350px){ @include dim(100%, auto); };
+                                    @media (max-width: 1000px){ @include dim(80%, auto); };
                         }
 
                         > div.pkmnCardInfo{
@@ -132,6 +195,32 @@ div#interface{
         box-sizing: border-box;
         display: block;
 
+                @media (max-width: 1200px){
+                    position: absolute;
+                    @include position(
+                        $vertical: 0,
+                        $horizontal: 0
+                    );
+                    z-index: -1;
+                    width: 100%;
+                    opacity: 0;
+                    transition: opacity 300ms;
+                };
+
+        > svg#cruz{
+            position: absolute;
+            @include dim(42px, 42px);
+            padding: 12px;
+            box-sizing: border-box;
+            top: 0;
+            right: 0;
+            filter: brightness(0.6) saturate(2) contrast(4);
+
+            &:hover{
+                cursor: pointer;
+                filter: brightness(0.5) saturate(2) contrast(4);
+            }
+        }
         > button#submit{
             display: none;
         }
