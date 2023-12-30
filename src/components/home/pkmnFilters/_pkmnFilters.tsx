@@ -1,4 +1,4 @@
-import { LegacyRef, useContext, useRef } from "react";
+import { LegacyRef, useRef } from "react";
 import OrderBy from "./orderBy";
 import ThemeSelector from "./themeSelector";
 import WeightSlider from "./weightSlider";
