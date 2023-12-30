@@ -12,6 +12,7 @@ export default function Header(){
 
     return(
         <header>
+            <div></div>
             <svg id="abobada" x="0px" y="0px" viewBox="0 0 1920 102">
                 <path d="M0,96c320-21.3,640-32,960-32c320,0,640,10.7,960,32V0H0V96z"/>
                 <linearGradient

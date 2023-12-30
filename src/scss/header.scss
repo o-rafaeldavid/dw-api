@@ -7,11 +7,14 @@ header{
     z-index: 1;
     position: relative;
     @include dim(100dvw, $headerHeight * 1.5);
-
+    
+    > div{
+        height: 32px;
+        background-color: white;
+        position: relative;
+        z-index: 1;
+    }
     > svg#abobada{
-        position: absolute;
-        @include position($vertical: 0, $horizontal: 0);
-
         > path:first-child{
             fill: white;
         }
@@ -20,8 +23,11 @@ header{
     }
 
     > nav{
-        position: relative;
-        @include dim(100%, 3dvw);
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        @include dim(100%, calc(32px + 3dvw));
         display: flex;
         flex-direction: row;
 
