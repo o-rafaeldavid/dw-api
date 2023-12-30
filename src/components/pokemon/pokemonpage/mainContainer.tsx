@@ -144,7 +144,7 @@ export default function PokemonPageMain({pokemon , nome} : {pokemon: any, nome: 
                     </div>
                     <div>
                     <h3>Weight</h3>
-                    <p>{pokemon.weight} lbs</p>
+                    <p>{parseInt(pokemon.weight) / 10} kg</p>
                     </div>
                 </div>
             </div>

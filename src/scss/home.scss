@@ -125,11 +125,89 @@ div#interface{
         }
     }
 
-    > ul#pkmnFilters{
+    > form#pkmnFilters{
         min-width: 200px;
         @include whiteRoundCorner(20px);
         padding: 18px;
         box-sizing: border-box;
         display: block;
+
+        > button#submit{
+            display: none;
+        }
+
+        > fieldset{
+            margin: 0;
+            padding: 0;
+            border: none;
+        
+            > input#pesquisaNome{
+                outline: none;
+                border: none;
+                @include whiteRoundCorner(100px);
+                
+                padding: 6px;
+            }
+
+            > ul#orderBy{
+                display: flex;
+                gap: 12px;
+                margin-top: 12px;
+
+                > li{
+                    
+                    border: none;
+                    padding: 6px 12px;
+                    @include whiteRoundCorner(20px);
+                    box-shadow: none;
+                    outline: rgba(0, 0, 0, 0.05) 3px solid;
+
+                    > input{
+                        display: none;
+                    }
+
+                    &:hover{
+                        cursor: pointer;
+                        filter: brightness(0.77) saturate(2) contrast(1.2) !important;
+                    }
+                    
+                }
+            }
+
+            > ol#genSelectors{
+                gap: 12px;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                margin-top: 12px;
+
+                > li{
+                    @include whiteRoundCorner(20px);
+                    box-shadow: none;
+                    outline: rgba(0, 0, 0, 0.05) 3px solid;
+                    padding: 6px;
+                    text-align: center;
+
+                    > input{
+                        display: none;
+                    }
+
+                    &:hover{
+                        cursor: pointer;
+                        filter: brightness(0.77) saturate(2) contrast(1.2) !important;
+                    }
+
+                    &.nope{
+                        animation: nope 300ms linear;
+                        background: rgb(240, 6, 84) !important;
+                    }
+
+                    @keyframes nope {
+                        0%, 40%, 80%{ translate: -5px 0; }
+                        20%, 60%, 100%{ translate: 5px 0; }
+                    }
+
+                }
+            }
+        }
     }
 }

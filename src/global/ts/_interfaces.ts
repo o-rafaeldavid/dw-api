@@ -65,12 +65,16 @@ export interface ThemeTypeProps{
     themeType: keyof TypesProps
 }
 
+export interface Action{
+    action?: Function
+}
 
 export interface ThemeSpinnerProps{
     themeType: keyof TypesProps,
     showSpinner: boolean,
     onMouseEnter?: MouseEventHandler
     onMouseLeave?: MouseEventHandler 
+    action?: Function
 }
 
 export interface PkmnNavigateProps{

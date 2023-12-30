@@ -42,6 +42,8 @@ export const iconsSVGByName : TypesProps = {
     fairy
 }
 
+export const allTypes = Object.keys(iconsSVGByName)
+
 export const iconsColorByName : TypesProps = {
     all: '#CEEFBD',
     normal: '#A0A29F',

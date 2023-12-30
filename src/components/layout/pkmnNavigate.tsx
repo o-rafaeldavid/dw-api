@@ -29,6 +29,9 @@ export default function PkmnNavigate({anterior, proximo, state, setState, type, 
     }
 
 
+    console.log(anterior)
+    console.log(proximo)
+
     ///////////////
     ///////////////
     ///////////////

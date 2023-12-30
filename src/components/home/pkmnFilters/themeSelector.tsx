@@ -1,18 +1,24 @@
-import {useContext, useEffect, useState } from "react"
-import { ThemeTypeContext } from "../../contexts/themeType"
-import { TypeIcon } from "../icons/typeIcon"
-import { ThemeSpinnerProps } from "../../global/ts/_interfaces"
-import { useREQuery } from "../../global/graphql/useREquery"
+import {useContext, useEffect, useRef, useState } from "react"
+import { ThemeTypeContext } from "../../../contexts/themeType"
+import { TypeIcon } from "../../icons/typeIcon"
+import { Action, ThemeSpinnerProps } from "../../../global/ts/_interfaces"
+import { useREQuery } from "../../../global/graphql/useREquery"
 
-import '../../scss/themeSelector.scss'
+import '../../../scss/themeSelector.scss'
 
 ////////////////////
 ////////////////////
 
-export default function ThemeSelector(){
+export default function ThemeSelector({action} : Action){
+
     const {themeType} = useContext(ThemeTypeContext)
     const [showSpinner, setShowSpinner] = useState<boolean>(false)
 
+    const onLeave = () => {
+        const themeSelected = document.getElementById('themeSelected')
+        if(themeSelected !== null) themeSelected.classList.remove('clicked')
+        setShowSpinner(false)
+    }
 
     return(
         <>
@@ -35,11 +41,8 @@ export default function ThemeSelector(){
                 <ThemeSpinner
                     themeType={themeType}
                     showSpinner={showSpinner}
-                    onMouseLeave={() => {
-                        const themeSelected = document.getElementById('themeSelected')
-                        if(themeSelected !== null) themeSelected.classList.remove('clicked')
-                        setShowSpinner(false)
-                    }}
+                    onMouseLeave={onLeave}
+                    action={action}
                 />
             </div>
         </>
@@ -50,7 +53,7 @@ export default function ThemeSelector(){
 ////////////////////
 ////////////////////
 
-function ThemeSpinner({themeType, showSpinner, onMouseLeave, onMouseEnter} : ThemeSpinnerProps){
+function ThemeSpinner({themeType, showSpinner, onMouseLeave, onMouseEnter, action} : ThemeSpinnerProps){
     const {setThemeType} = useContext(ThemeTypeContext)
     const queryTypesByName = useREQuery(
         {
@@ -78,11 +81,8 @@ function ThemeSpinner({themeType, showSpinner, onMouseLeave, onMouseEnter} : The
         }, [queryTypesByName.res]
     )
 
-    useEffect(
-        () => {
-            console.log('showSpinner')
-        }, [showSpinner]
-    )
+    
+
 
     return(
         <ul
@@ -91,18 +91,38 @@ function ThemeSpinner({themeType, showSpinner, onMouseLeave, onMouseEnter} : The
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
-            {types.map((type : any) => 
+            {types.map((type : any,) => 
                 <li
                     key={"themeSelector-" + type.name}
-                    className={"typeIconDescription" + ((themeType === type.name) ? " selecionado" : "")}
+                    className={
+                        "typeIconDescription" + (
+                            (themeType === type.name) ? " selecionado" : ""
+                    )}
                     onClick={
                         (e) => {
                             setThemeType(type.name)
+                            const radio = e.currentTarget.querySelector('input[type="radio"]') as HTMLInputElement
+                            radio.checked = true
+
+                            var event = new Event(
+                                'input',
+                                {
+                                    bubbles: true,
+                                    cancelable: true,
+                                }
+                            )
+                            radio.dispatchEvent(event)
                         }
                     }
                 >
                     <TypeIcon.withBackground themeType={type.name}/>
                     <span>{type.name}</span>
+                    <input type="radio" name="type"
+                        onInput={() => {if(action !== undefined) action()}}
+                        onChange={()=>{}}
+                        checked={(themeType === type.name)}
+                        value={type.name}
+                    />
                 </li>
             )}
         </ul>

@@ -1,0 +1,99 @@
+@import './_mixins.scss';
+
+$headerHeight: 64px;
+
+div#weightSlider{
+    @include dim(100%, $headerHeight * 0.5);
+    margin-bottom: 20px;
+    position: relative;
+
+    > input[type="range"]{
+        position: absolute;
+        @include dim(100%, auto);
+        z-index: 5;
+        opacity: 0;
+        
+        pointer-events: none;
+
+        &::-webkit-slider-thumb{
+            pointer-events: all;
+        }
+
+        &::-moz-range-thumb{
+            pointer-events: all;
+        }
+
+        &::-ms-thumb{
+            pointer-events: all;
+        }
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+
+
+    > div.slider{
+        @include dim(calc(100%), 7px);
+        @include position(
+            $vertical: 50%,
+            $horizontal: 0
+        );
+        position: relative;
+        background-color: rgb(230, 230, 230);
+
+        > div{
+            position: absolute;
+
+            &.track, &.range{
+                top: 0; bottom: 0;
+            }
+        
+
+            &.track{
+                left: 0; right: 0;
+                background-color: rgb(230, 230, 230);
+                z-index: 1;
+            }
+
+            &.range{
+                left: 0; right: 0;
+                z-index: 2;
+                filter: brightness(0.9) saturate(2) contrast(1.2);
+            }
+
+            &.thumb{
+                @include dim(18px, 18px);
+                @include whiteRoundCorner();
+                z-index: 3;
+
+                &.left{
+                    left: 0;
+                    translate: -50% -25%;
+                    + span{ translate: -50% 50%; }
+                }
+                &.right{
+                    right: 0;
+                    translate: 50% -25%;
+                    + span{ translate: 50% 50%; right: 0;}
+                }
+
+                + span{
+                    font-size: 0.85em;
+                    position: absolute;
+                    top: 100%;
+                    text-align: center;
+                    @include whiteRoundCorner(12px);
+                    padding: 2px 6px;
+                    color: white;
+                    background-color: rgba(0, 0, 0, 0.2);
+                }
+
+                &.hover{
+                    filter: brightness(0.8);
+                }
+            }
+        }
+    }
+}

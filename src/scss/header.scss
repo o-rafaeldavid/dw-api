@@ -19,23 +19,33 @@ header{
         filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.3));
     }
 
-    > div{
+    > nav{
         position: relative;
-        @include dim(100%, $headerHeight);
+        @include dim(100%, 3dvw);
         display: flex;
         flex-direction: row;
 
         
-        > nav{
-            position: relative;
+        
+        > a{
             @include dim(auto, 100%);
+            aspect-ratio: 1 / 1;
+            position: absolute;
+            @include position(
+                $vertical: 50%,
+                $horizontal: 50%
+            );
+            translate: -50% -50%;
             > svg#pokebola{
-                aspect-ratio: 1 / 1;
+                @include dim(auto, 100%);
+                aspect-ratio: 1 / 1;  
+                padding: 6px;
                 height: 100%;
-                padding: 12px;
                 box-sizing: border-box;
                 filter: brightness(0.87) saturate(1.2) contrast(1.4);
+                
             }
         }
+        
     }
 }
