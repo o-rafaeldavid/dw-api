@@ -1,9 +1,12 @@
-import { useContext, useEffect, useRef, useState } from "react"
+import { LegacyRef, useContext, useEffect, useRef, useState } from "react"
 import { ThemeTypeContext } from "../../../contexts/themeType"
 import NavigateLists from "./navigateLists"
 import { PaginaAsideContext } from "../../../contexts/pokemon/paginaAside"
 import PokemonPageMain from "./mainContainer"
 import { capitalizarPosTracos } from "../../../global/ts/functions"
+import { WindowDimensionContext } from "../../../contexts/windowResize"
+import Cruz from "../../layout/cruz"
+import { iconsColorByName } from "../../../global/ts/icons"
 
 /* 
 pokemon_v2_pokemonspecies(where: {name: {_eq: "charizard"}}) {
@@ -64,7 +67,8 @@ pokemon_v2_pokemonspecies(where: {name: {_eq: "charizard"}}) {
 */
 
 export default function PokemonPage({especies} : {especies : any}){
-    const { setThemeType } = useContext(ThemeTypeContext)
+    const { themeType, setThemeType } = useContext(ThemeTypeContext)
+    const {windowWidth} = useContext(WindowDimensionContext)
 
     const linhaEvolutiva = especies[0]
                                 .pokemon_v2_evolutionchain
@@ -140,12 +144,21 @@ export default function PokemonPage({especies} : {especies : any}){
             }
             <aside>
                 <NavigateLists/>
-
+                {
+                    (windowWidth <= 1200) ? (
+                        <div>
+                            <Cruz
+                                style={{fill: `${iconsColorByName[themeType]}`}}
+                                parentElement={document.querySelector('#pokemonPage > aside')}
+                            />
+                        </div>
+                    ) : <></>
+                }
                 <div id="lists">
-                    <ol className="active">
+                    <ol className="active" id="listaEvolucoes">
                         {
                             linhaEvolutiva.map(
-                                (pkmn : any) => {
+                                (pkmn : any, index : number) => {
                                     const imagem = (
                                         <img
                                             alt=""
@@ -162,6 +175,11 @@ export default function PokemonPage({especies} : {especies : any}){
                                         />
                                     )
 
+                                    const listaEvolucoes = document.getElementById('listaEvolucoes')
+                                    if(index > 4 && listaEvolucoes !== null) {
+                                        listaEvolucoes.style.justifyContent = 'start'
+                                    }
+
                                     return(
                                     <li 
                                         key={`especie-${especies[0].name}-${pkmn.name}`}
@@ -175,31 +193,37 @@ export default function PokemonPage({especies} : {especies : any}){
                             )
                         }
                     </ol>
-                    <ol>
+                    <ol id="listaFormas">
                         {
                             especies[0].pokemon_v2_pokemons.map(
-                                (pkmn : any, index : number) => (
-                                    <li 
-                                        key={`especie-${especies[0].name}-${index}`}
-                                        className={
-                                            (pkmnAtualindex === index) ? 'active' : undefined
-                                        }
-                                        onClick={() => { setPkmnAtualindex(index) }}
-                                    >
-                                        <img
-                                            alt=""
-                                            src={
-                                                JSON.parse(
-                                                    pkmn
-                                                        .pokemon_v2_pokemonsprites[0]
-                                                        .sprites    )
-                                                        .other
-                                                        .home
-                                                        .front_default
+                                (pkmn : any, index : number) => {
+                                    const listaFormas = document.getElementById('listaFormas')
+                                    if(index > 4 && listaFormas !== null) {
+                                        listaFormas.style.justifyContent = 'start'
+                                    }
+                                    return(
+                                        <li 
+                                            key={`especie-${especies[0].name}-${index}`}
+                                            className={
+                                                (pkmnAtualindex === index) ? 'active' : undefined
                                             }
-                                        />
-                                    </li>
-                                )
+                                            onClick={() => { setPkmnAtualindex(index) }}
+                                        >
+                                            <img
+                                                alt=""
+                                                src={
+                                                    JSON.parse(
+                                                        pkmn
+                                                            .pokemon_v2_pokemonsprites[0]
+                                                            .sprites    )
+                                                            .other
+                                                            .home
+                                                            .front_default
+                                                }
+                                            />
+                                        </li>
+                                    )
+                                }
                             )
                         }
                     </ol>

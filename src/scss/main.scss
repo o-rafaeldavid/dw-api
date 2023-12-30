@@ -53,6 +53,10 @@ h1{
     color: white;
     font-size: 12em;
     line-height: 1;
+
+    @media (max-width: 1440px) {
+        font-size: 10em;
+    }
 }
 
 h3{
@@ -153,9 +157,15 @@ div.switcher{
 
     filter: saturate(1.3);
 
+    @media (max-width: 1500px){ scale: 1.5; }
+    @media (max-width: 1000px){ scale: 2.5; }
+
     > div{
         position: relative;
         @include dim(3dvw, 3dvh);
+            @media (max-width: 1500px){ @include dim(2.7dvw, 2.7dvh); }
+            @media (max-width: 1290px){ @include dim(2.2dvw, 2.2dvh); }
+            @media (max-width: 1000px){ @include dim(1.9dvw, 1.9dvh); }
 
         transition: opacity 300ms;
 

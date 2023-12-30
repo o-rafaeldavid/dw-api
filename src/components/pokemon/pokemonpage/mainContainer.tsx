@@ -1,16 +1,19 @@
-import { CSSProperties, LegacyRef, useRef, useState } from "react"
+import { CSSProperties, LegacyRef, useContext, useRef, useState } from "react"
 import { capitalizarPosTracos, mapear } from "../../../global/ts/functions"
 import Switcher from "../../layout/switcher"
 import { TypeIcon } from "../../icons/typeIcon"
+import { WindowDimensionContext } from "../../../contexts/windowResize"
 
-const mapearStats = (stat : number) => {
-    const mapeamento = mapear(stat, 1, 255, 10, 120)
+const mapearStats = (stat : number, windowWidthSize : number) => {
+    const mapeamento = mapear(stat, 1, 255, 10, (windowWidthSize > 1550) ? 120 : 90)
     return mapeamento
 }
 
 
 
 export default function PokemonPageMain({pokemon , nome} : {pokemon: any, nome: string}){
+    const {windowWidth} = useContext(WindowDimensionContext)
+
     let mainRef = useRef<HTMLElement>()
     const [styleAboutAbility, setStyleAboutAbility] = useState<CSSProperties>({})
     const [textAboutAbility, setTextAboutAbility] = useState<string>('')
@@ -78,9 +81,9 @@ export default function PokemonPageMain({pokemon , nome} : {pokemon: any, nome: 
 
                                     <td className="barra">
                                         <div
-                                            style={{width: `${mapearStats(255)}px`}}
+                                            style={{width: `${mapearStats(255, windowWidth)}px`}}
                                         >
-                                            <div style={{width: `${mapearStats(stat.base_stat)}px`}}></div>
+                                            <div style={{width: `${mapearStats(stat.base_stat, windowWidth)}px`}}></div>
                                         </div>
                                     </td>
                                 </tr>
@@ -148,6 +151,32 @@ export default function PokemonPageMain({pokemon , nome} : {pokemon: any, nome: 
                     </div>
                 </div>
             </div>
+
+            {
+                (windowWidth <= 1200) ? (
+                    <div id="toAside">
+                        <svg x="0px" y="0px" viewBox="0 0 1080 1080"
+                            onClick={
+                                () => {
+                                    const aside = document.querySelector('#pokemonPage aside') as HTMLElement
+
+                                    if(aside !== null){
+                                        aside.style.translate = '0 0';
+                                    }
+                                }
+                            }
+                        >
+                            <g>
+                            <path d="M505.1,88.4l-204,353.3C285.6,468.5,305,502,336,502h407.9c31,0,50.3-33.5,34.9-60.4l-204-353.3
+                                C559.3,61.5,520.6,61.5,505.1,88.4z"/>
+                            <circle cx="262.4" cy="780.4" r="202.4"/>
+                            <path d="M979.8,982.8H655.5c-22.2,0-40.2-18-40.2-40.2V618.2c0-22.2,18-40.2,40.2-40.2h324.3c22.2,0,40.2,18,40.2,40.2v324.3
+                                C1020,964.7,1002,982.8,979.8,982.8z"/>
+                            </g>
+                        </svg>
+                    </div>
+                ) : <></>
+            }
         </main>
     )
 }

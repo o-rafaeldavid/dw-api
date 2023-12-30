@@ -11,13 +11,65 @@
 
     margin-bottom: 10dvh;
 
+    @media (max-width: 1440px) {
+        margin-top: 5dvh;
+        margin-bottom: 15dvh;
+    }
+    @media (max-width: 910px) {
+        margin-bottom: 5dvh;
+    }
+
     
     > main{
         position: relative;
         flex-grow: 1;
         margin-left: 15dvw;
+                @media (max-width: 1740px) {
+                    margin-left: 10dvw;
+                }
+                @media (max-width: 1375px) {
+                    margin-left: 5dvw;
+                }
+                @media (max-width: 1200px) {
+                    margin-left: 5dvw;
+                    margin-right: 5dvw;
+                }
+                
 
         $marginTopH1: 46px;
+
+        > div#toAside{
+            @include dim(48px, 48px);
+            position: absolute;
+            @include position(
+                $vertical: 50%,
+                $horizontal: 0,
+                $isLeft: false
+            );
+            margin-right: 32px;
+
+                    @media (max-width: 1000px) {
+                        top: 6em;
+                    }
+
+            > svg{
+                padding: 6px;
+                box-sizing: border-box;
+                filter: drop-shadow(rgba(0, 0, 0, 0.5) 0 0 20px);
+                > *{
+                    fill: white;
+                    
+                }
+
+                &:hover{
+                    cursor: pointer;
+                    > *{
+                        fill: rgb(120, 120, 120);
+                        
+                    }
+                }
+            }
+        }
 
         > div.switcher{
             position: absolute;
@@ -27,6 +79,15 @@
                 $horizontal: 0,
                 $isLeft: false
             );
+
+            @media (max-width: 1000px) {
+                right: unset;
+                @include position(
+                    $vertical: calc($marginTopH1 + 10.5em),
+                    $horizontal: 0,
+                    $isLeft: true
+                );
+            }
         }
 
 
@@ -55,6 +116,9 @@
         > h1{
             margin-top: $marginTopH1;
             max-width: 50dvw;
+                @media (max-width: 1740px) {
+                    max-width: 75dvw;
+                }
         }
 
 
@@ -63,6 +127,7 @@
         > img#imagemPrincipal{
             position: absolute;
             @include dim(auto, 78dvh);
+
             aspect-ratio: 1 / 1;
 
             @include position(
@@ -71,6 +136,27 @@
                 $isTop: false
             );
             translate: -50% 0;
+                    @media (max-width: 1550px) {
+                        @include dim(auto, 70dvh);
+                        left: 63%;
+                    }
+                    @media (max-width: 1440px) {
+                        @include dim(auto, 65dvh);
+                    }
+                    @media (max-width: 1290px) {
+                        left: 60%;
+                    }
+                    @media (max-width: 1110px) {
+                        @include dim(auto, 60dvh);
+                    }
+                    @media (max-width: 1000px) {
+                        left: unset;
+                        right: 0;
+                        translate: 0% 0;
+                    }
+                    @media (max-width: 910px) {
+                        translate: 0% -20dvh;
+                    }
         }
 
 
@@ -84,6 +170,13 @@
                 $isTop: false,
                 $isLeft: false
             );
+
+                @media (max-width: 1100px) {
+                    span{ font-size: 1.2em !important; }
+                }
+                @media (max-width: 910px) {
+                    translate: 0% -20dvh;
+                }
 
             > li{
                 @include whiteRoundCorner(24px);
@@ -165,15 +258,37 @@
         position: relative;
         overflow: hidden;
         width: 20dvw;
+            @media (max-width: 1200px) {
+                @include dim(200px, 100%);
+                position: absolute;
+                top: 0;
+                right: 0;
+                translate: 100% 0;
+
+                transition: translate 300ms;
+                z-index: 10;
+                
+                @include whiteRoundCorner(12px);
+                border-radius: 12px 0 0 12px;
+            }
         display: flex;
         flex-direction: column-reverse;
+                @media (max-width: 1200px) {
+                    flex-direction: column;
+                }
 
         > div#navigateLists{
             $sizeNavigateItems: 64px;
             @include dim(auto, $sizeNavigateItems);
+            
 
             display: flex;
             flex-direction: column;
+            @media (max-width: 1200px) {
+                margin-top: 12px;
+                flex-direction: column-reverse;
+                @include dim(auto, $sizeNavigateItems * 0.5);
+            }
 
             > div{
                 display: flex;
@@ -181,6 +296,9 @@
                 @include dim(auto, $sizeNavigateItems * 0.5);
 
                 &#bolinhas{
+                    @media (max-width: 1200px) {
+                        display: none;
+                    }
                     > div{
                         @include dim(auto, $sizeNavigateItems * 0.25);
                         aspect-ratio: 1 / 1;
@@ -199,11 +317,16 @@
                 }
 
                 &.pkmnNavigate{
-
+                    @media (max-width: 1200px) {
+                        >div{ width: auto; padding: 0}
+                    }
                     > div{
                         > span{
                             font-size: 20px;
                             font-weight: 500;
+                                    @media (max-width: 1200px) {
+                                        font-size: 16px;
+                                    }
                         }
                     }
                 }
@@ -217,7 +340,24 @@
         
 
             > ol{
+                overflow-y: auto;
+                &::-webkit-scrollbar{
+                    width: 6px;
+                }
+                &::-webkit-scrollbar-thumb{
+                    background-color: white;
+                    @media (max-width: 1200px) {
+                        background-color: rgb(120, 120, 120);
+                    }
+                }
+
+                
+
                 @include dim(100%, 100%);
+
+                    @media (max-width: 1200px) {
+                        height: calc(100% - 72px);
+                    }
                 position: absolute;
                 @include position(
                     $vertical: 0,
@@ -240,26 +380,28 @@
 
                 transition: left 200ms ease-in-out;
 
+
+
                 > li{
                     cursor: pointer;
                     position: relative;
                     @include dim(100px, auto);
+                            @media (max-width: 1200px) {
+                                @include dim(130px, auto);
+                            }
                     aspect-ratio: 1 / 1;
 
                     @include whiteRoundCorner(20px);
                     padding: 12px;
+                    box-sizing: border-box;
 
                     transform-origin: right center;
 
                     transition: scale 200ms, margin 200ms, opacity 200ms, filter 200ms;
 
 
-
-                    &:has(+ li.active){
-                        margin-bottom: 10px;
-                    } 
-                    &.active + li{
-                        margin-top: 10px;
+                    &:first-child{
+                        margin-top: 30px;
                     }
 
                     &.active{
@@ -287,6 +429,22 @@
                         width: 100%;
                     }
                 }
+            }
+        }
+
+        > div:has(svg.cruz){
+            position: absolute;
+            @include position(
+                $vertical: 20px,
+                $horizontal: 50%,
+                $isTop: false
+            );
+            translate: -50% 0;
+            z-index: 10;
+            @include whiteRoundCorner();
+
+            > svg{
+                translate: 0 2px;
             }
         }
     }

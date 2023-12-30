@@ -216,19 +216,10 @@ div#interface{
                     transition: opacity 300ms;
                 };
 
-        > svg#cruz{
+        > svg.cruz{
             position: absolute;
-            @include dim(42px, 42px);
-            padding: 12px;
-            box-sizing: border-box;
             top: 0;
             right: 0;
-            filter: brightness(0.6) saturate(2) contrast(4);
-
-            &:hover{
-                cursor: pointer;
-                filter: brightness(0.5) saturate(2) contrast(4);
-            }
         }
         > button#submit{
             display: none;
