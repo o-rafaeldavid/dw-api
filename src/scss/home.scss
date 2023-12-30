@@ -71,6 +71,11 @@ div#interface{
                         gap: 12px;
                     }
 
+                    @media (max-width: 670px){
+                        grid-template-columns: repeat(2, 1fr);
+                        grid-template-rows: repeat(3, 1fr);
+                    };
+
 
 
             &:has( > li:hover) > li:not(:hover){
@@ -116,6 +121,7 @@ div#interface{
                                 ){ padding: 0px 4px 12px 4px; }
                                 @media (max-width: 1000px){ padding: 0px 4px 8px 4px; };
                                 @media (max-width: 850px){ padding: 8px 2px; };
+                                @media (max-width: 670px){ padding: 0 2px 6px 2px; };
 
                         > div.pkmnCardImage{
                             @include dim(100%, auto);
@@ -129,6 +135,8 @@ div#interface{
                                     @media (max-height: 720px){ @include dim(55%, auto); }
                                     @media (max-height: 700px) or (max-width: 1350px){ @include dim(100%, auto); };
                                     @media (max-width: 1000px){ @include dim(80%, auto); };
+                                    @media (max-width: 670px){ @include dim(65%, auto);};
+                                    @media (max-width: 670px){ @include dim(65%, auto);};
                         }
 
                         > div.pkmnCardInfo{

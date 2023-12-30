@@ -71,10 +71,14 @@ export default function Home() {
   const {windowWidth, windowHeight} = useContext(WindowDimensionContext)
   useEffect(
     () => {
-      if(windowHeight <= 720 || windowWidth <= 1600) setPkmnsNumGrid(4 * 2)
+      if(windowHeight <= 720 || windowWidth <= 1600){
+
+        if(windowWidth > 670 && windowWidth <= 1000) setPkmnsNumGrid(3 * 3)
+        else if(windowWidth <= 670) setPkmnsNumGrid(2 * 3)
+        else setPkmnsNumGrid(4 * 2)
+      }
       else if(windowHeight > 720 && windowWidth > 1600) setPkmnsNumGrid(6 * 2)
 
-      if(windowWidth <= 1000) setPkmnsNumGrid(3 * 3)
 
     }, [windowWidth, windowHeight]
   )
