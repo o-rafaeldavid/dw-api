@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useREQuery } from "../global/graphql/useREquery";
 import NotFound from "./404";
 import PokemonPage from "../components/pokemon/pokemonpage/pokemonpage";
@@ -7,16 +7,14 @@ import '../scss/pokemon.scss'
 import PaginaAsideProvider from "../contexts/pokemon/paginaAside";
 
 export default function Pokemon(){
-    const location = useLocation();
-    const { pathname } = location;
+    const params = useParams()
+    const pkmn = params.pkmn
 
-    const lastIndexBarra = pathname.lastIndexOf('/')
-    const pokemonToGet = pathname.substring(lastIndexBarra + 1, pathname.length)
 
 
 
     const queryPkmnURL = useREQuery({query:`
-            pokemon_v2_pokemonspecies(where: {name: {_eq: "${pokemonToGet}"}}) {
+            pokemon_v2_pokemonspecies(where: {name: {_eq: "${pkmn}"}}) {
                 id
                 name
                 generation_id
@@ -73,7 +71,6 @@ export default function Pokemon(){
         `}
     )
 
-    const ret = () => {
         if(queryPkmnURL.isLoading) return <p>loading</p>
         else{
             const res = queryPkmnURL.res
@@ -85,11 +82,5 @@ export default function Pokemon(){
                 </PaginaAsideProvider>
             )
         }
-    }
-    console.log(ret)
-    return(
-        <>
-            teste
-        </>
-    )
+    
 }

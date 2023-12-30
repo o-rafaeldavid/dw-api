@@ -21,9 +21,8 @@ export default function Ruas() {
                         </PaginaGridProvider>
                     } />
                     {/* Sobre cada Pokemon */}
-                    <Route path='/pokemon' element={<Pokemon/>}>
-                        <Route path='*' element={<Pokemon/>}/>
-                    </Route>
+                    <Route path='/pokemon' element={<Pokemon/>}/>
+                    <Route path='/pokemon/:pkmn' element={<Pokemon/>}/>
                     <Route path='*' element={<NotFound/>}/>
                 </Routes>
             </div>
