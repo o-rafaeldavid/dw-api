@@ -5,7 +5,7 @@ export default function Cruz({style, parentElement} : {style: CSSProperties, par
     return(
         <svg className="cruz" x="0px" y="0px" viewBox="0 0 1080 1080"
             onClick={
-                (e) => {
+                () => {
                     if(parentElement !== null) parentElement.removeAttribute('style')
                 }
             }
