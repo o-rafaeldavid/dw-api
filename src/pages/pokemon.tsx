@@ -86,6 +86,7 @@ export default function Pokemon(){
             )
         }
     }
+    console.log(ret)
     return(
         <>
             {
