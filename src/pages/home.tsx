@@ -8,7 +8,7 @@ import { PaginaGridContext } from '../contexts/home/paginaGrid';
 import { ThemeTypeContext } from '../contexts/themeType';
 import { WindowDimensionContext } from '../contexts/windowResize';
 
-import { allTypes, iconsColorByName, iconsGradientColorsByName } from '../global/ts/icons';
+import { allTypes, iconsGradientColorsByName } from '../global/ts/icons';
 import { TypesProps } from '../global/ts/_interfaces';
 
 
