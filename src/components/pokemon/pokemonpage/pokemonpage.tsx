@@ -1,4 +1,4 @@
-import { LegacyRef, useContext, useEffect, useRef, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import { ThemeTypeContext } from "../../../contexts/themeType"
 import NavigateLists from "./navigateLists"
 import { PaginaAsideContext } from "../../../contexts/pokemon/paginaAside"
