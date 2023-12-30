@@ -5,12 +5,13 @@ div#interface{
     @include centrado_absolute();
     @include dim(80dvw, 75dvh);
             @media (max-height: 1000px) or (max-width: 1350px){ @include dim(80dvw, 75dvh); };
-            @media (max-width: 900px){ @include dim(90dvw, 75dvh); };
+            @media (max-width: 900px){ @include dim(92dvw, 85dvh); };
 
     display: flex;
     flex-direction: row;
     gap: 60px;
         @media (max-height: 700px) or (max-width: 1350px){ gap: 26px; };
+        @media (max-width: 600px){ gap: 10px; };
 
 
 
