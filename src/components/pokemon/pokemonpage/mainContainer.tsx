@@ -51,10 +51,10 @@ export default function PokemonPageMain({pokemon , nome} : {pokemon: any, nome: 
             <ul id="types">
                 {
                     pokemon.pokemon_v2_pokemontypes.map(
-                        (type : any) => {
+                        (type : any, index : number) => {
                             const tipoNome = type.pokemon_v2_type.name
                             return(
-                                <li>
+                                <li key={`${type}-${index}`}>
                                     <TypeIcon.withBackground themeType={tipoNome}/>
                                     <span>{tipoNome}</span>
                                 </li>
@@ -97,48 +97,52 @@ export default function PokemonPageMain({pokemon , nome} : {pokemon: any, nome: 
                         <ul>
                             {
                                 pokemon.pokemon_v2_pokemonabilities.map(
-                                    (ability : any) => (
-                                        <li key={`pkmn-${pokemon.name}-ability-${ability.pokemon_v2_ability.name}`}>
-                                            <p>
-                                                <span>{capitalizarPosTracos(ability.pokemon_v2_ability.name)}</span>
-                                                <span
-                                                    className="about"
-                                                    style={{marginLeft: '6px'}}
-                                                    onMouseEnter={
-                                                        (e) => {
-                                                            if(mainRef.current !== undefined){
-                                                                const bounds = mainRef.current.getBoundingClientRect()
-                                                                const boundsTarget = e.currentTarget.getBoundingClientRect()
-                                                                console.log(e.currentTarget)
-                                                                setStyleAboutAbility({
-                                                                    top: `${boundsTarget.top - bounds.y}px`,
-                                                                    left: `${boundsTarget.right - bounds.x + 10}px`,
-                                                                    display: 'block'
-                                                                })
-                                                                setTextAboutAbility(
-                                                                    capitalizarPosTracos(
-                                                                        ability
-                                                                            .pokemon_v2_ability
-                                                                            .pokemon_v2_abilityeffecttexts[0]
-                                                                            .effect
+                                    (ability : any) => {
+                                        const abilityeffecttexts = ability
+                                                            .pokemon_v2_ability
+                                                            .pokemon_v2_abilityeffecttexts
+                                        return(
+                                            <li key={`pkmn-${pokemon.name}-ability-${ability.pokemon_v2_ability.name}`}>
+                                                <p>
+                                                    <span>{capitalizarPosTracos(ability.pokemon_v2_ability.name)}</span>
+                                                    <span
+                                                        className="about"
+                                                        style={{marginLeft: '6px'}}
+                                                        onMouseEnter={
+                                                            (e) => {
+                                                                if(mainRef.current !== undefined){
+                                                                    const bounds = mainRef.current.getBoundingClientRect()
+                                                                    const boundsTarget = e.currentTarget.getBoundingClientRect()
+                                                                    console.log(e.currentTarget)
+                                                                    setStyleAboutAbility({
+                                                                        top: `${boundsTarget.top - bounds.y}px`,
+                                                                        left: `${boundsTarget.right - bounds.x + 10}px`,
+                                                                        display: 'block'
+                                                                    })
+                                                                    setTextAboutAbility(
+                                                                        capitalizarPosTracos(
+                                                                            abilityeffecttexts.length === 0
+                                                                            ? "not supported text from PokeAPI GraphQL API"
+                                                                            : abilityeffecttexts[0].effect
+                                                                        )
                                                                     )
-                                                                )
+                                                                }
                                                             }
                                                         }
-                                                    }
 
-                                                    onMouseLeave={
-                                                        () => {
-                                                            setStyleAboutAbility({display: 'none'})
+                                                        onMouseLeave={
+                                                            () => {
+                                                                setStyleAboutAbility({display: 'none'})
+                                                            }
                                                         }
-                                                    }
-                                                    
-                                                    >?</span>
-                                                {/* <br />
-                                                {capitalizarPosTracos(ability.pokemon_v2_ability.pokemon_v2_abilityeffecttexts[0].effect)} */}
-                                            </p>
-                                        </li>
-                                    )
+                                                        
+                                                        >?</span>
+                                                    {/* <br />
+                                                    {capitalizarPosTracos(ability.pokemon_v2_ability.pokemon_v2_abilityeffecttexts[0].effect)} */}
+                                                </p>
+                                            </li>
+                                        )
+                                    }
                                 )
                             }
                         </ul>
