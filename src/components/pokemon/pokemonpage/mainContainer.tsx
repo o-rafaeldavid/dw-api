@@ -20,11 +20,9 @@ export default function PokemonPageMain({pokemon , nome} : {pokemon: any, nome: 
 
 
 
-    const sprites = JSON.parse(
-                        pokemon
-                            .pokemon_v2_pokemonsprites[0]
-                            .sprites
-                    )
+    const sprites = pokemon
+                        .pokemon_v2_pokemonsprites[0]
+                        .sprites
     
     const [pkmnIsShiny, setPkmnIsShiny] = useState<boolean>(false)
     

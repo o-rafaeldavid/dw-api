@@ -163,14 +163,13 @@ export default function PokemonPage({especies} : {especies : any}){
                                         <img
                                             alt=""
                                             src={
-                                                JSON.parse(
-                                                    pkmn
-                                                        .pokemon_v2_pokemons[0]
-                                                        .pokemon_v2_pokemonsprites[0]
-                                                        .sprites    )
-                                                        .other
-                                                        .home
-                                                        .front_default
+                                                pkmn
+                                                    .pokemon_v2_pokemons[0]
+                                                    .pokemon_v2_pokemonsprites[0]
+                                                    .sprites
+                                                    .other
+                                                    .home
+                                                    .front_default
                                             }
                                         />
                                     )
@@ -212,13 +211,12 @@ export default function PokemonPage({especies} : {especies : any}){
                                             <img
                                                 alt=""
                                                 src={
-                                                    JSON.parse(
-                                                        pkmn
-                                                            .pokemon_v2_pokemonsprites[0]
-                                                            .sprites    )
-                                                            .other
-                                                            .home
-                                                            .front_default
+                                                    pkmn
+                                                        .pokemon_v2_pokemonsprites[0]
+                                                        .sprites
+                                                        .other
+                                                        .home
+                                                        .front_default
                                                 }
                                             />
                                         </li>

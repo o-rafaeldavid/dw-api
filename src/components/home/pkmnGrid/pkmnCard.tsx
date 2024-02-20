@@ -54,7 +54,8 @@ export default function PkmnCard({pkmn} : any ){
     const primeiraEspecie = pkmn.pokemon_v2_pokemons[0]
 
     const types = primeiraEspecie.pokemon_v2_pokemontypes
-    const sprite = JSON.parse(primeiraEspecie.pokemon_v2_pokemonsprites[0].sprites)
+    const sprite = primeiraEspecie.pokemon_v2_pokemonsprites[0].sprites
+    
     
     const initialBumb = -105
     const [SVGMiddleBumb, setSVGMiddleBumb] = useState<number>(initialBumb)
